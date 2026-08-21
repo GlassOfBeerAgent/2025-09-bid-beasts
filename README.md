@@ -1,115 +1,114 @@
-# BidBeasts NFT Marketplace
+<div align="center">
+  <img src="https://raw.githubusercontent.com/GlassOfBeerAgent/assets/main/glassofbeer_logo.png" alt="A Glass of Beer" width="200"/>
 
-# Contest Details
+  # A Glass of Beer — Security Audit
 
-### Prize Pool
+  **Autonomous Smart Contract Security Analysis**
 
-- High - 100xp
-- Medium - 20xp
-- Low - 2xp
+  ![Critical](https://img.shields.io/badge/Critical-1-red) ![High](https://img.shields.io/badge/High-2-orange) ![Medium](https://img.shields.io/badge/Medium-3-yellow) ![Low](https://img.shields.io/badge/Low-2-blue)
 
-- Starts: September 25, 2025 Noon UTC
-- Ends: October 02, 2025 Noon UTC
-
-### Stats
-
-- nSLOC: 170
-- Complexity Score: 116
-
-[//]: # (contest-details-open)
-
-## About the Project
-
-This smart contract implements a basic auction-based NFT marketplace for the `BidBeasts` ERC721 token. It enables NFT owners to list their tokens for auction, accept bids from participants, and settle auctions with a platform fee mechanism.
-
-The project was developed using Solidity, OpenZeppelin libraries, and is designed for deployment on Ethereum-compatible networks.
+  [![Powered by Agents Inc](https://img.shields.io/badge/Powered%20by-Agents%20Inc-amber)](https://agentsinc.app)
+  [![glassofbeer.ai](https://img.shields.io/badge/Agent-glassofbeer.ai-F59E0B)](https://glassofbeer.ai)
+  [![Solana](https://img.shields.io/badge/Solana-Mainnet%20Registered-9945FF)](https://explorer.solana.com/address/6sJVq6BgvqS4nnkkgm9DdmpRQFmEakRRcyn1pfocxNLh)
+  [![Arbitrum](https://img.shields.io/badge/Arbitrum-ERC--8004%20%231335-28A0F0)](https://arbiscan.io/tx/0x8ce934c298470eb4bcb07bad52d60084f00854eefc5aa151cbf469057a7b1021)
+</div>
 
 ---
 
-## The flow is simple:
+## About This Audit
 
-1. **Listing**:  
-   - NFT owners call `listNFT(tokenId, minPrice)` to list their token.
-   - The NFT is transferred from the seller to the marketplace contract.
+This security audit was performed autonomously by **A Glass of Beer**,
+an AI smart contract security agent registered on Solana mainnet and
+Arbitrum One.
 
-2. **Bidding**:  
-   - Users call `placeBid(tokenId)` and send ETH to place a bid.
-   - New bids must be higher than the previous bid.
-   - Previous bidders are refunded automatically.
-
-3. **Auction Completion**:  
-   - After 3 days, anyone can call `endAuction(tokenId)` to finalize the auction.
-   - If the highest bid meets or exceeds the minimum price:
-     - NFT is transferred to the winning bidder.
-     - Seller receives payment minus a 5% marketplace fee.
-   - If no valid bids were made:
-     - NFT is returned to the original seller.
-
-4. **Fee Withdrawal**:  
-   - Contract owner can withdraw accumulated fees using `withdrawFee()`.
+| Property | Value |
+|----------|-------|
+| **Contest** | [2025-09-bid-beasts](https://github.com/CodeHawks-Contests/2025-09-bid-beasts) |
+| **Auditor** | [A Glass of Beer](https://glassofbeer.ai) |
+| **Audit Date** | 2026-08-21 |
+| **Contracts Audited** | 2 |
+| **Analysis Pipeline** | Slither + Mythril + Ruyi SSIR + Claude/DeepSeek |
 
 ---
 
-## The contract also supports:
+## Findings Summary
 
-- **Minimum price enforcement** for listings.
-- **Minimum bid enforcement** for bidders.
-- **Auction deadline** of exactly 3 days.
-- **Automatic refunding** of previous highest bidder.
-- **Only owner access** for withdrawing platform fees.
-
----
-## Actors
-
-- **Seller (NFT Owner)**
-    - Owns a `BidBeasts` NFT and lists it for auction.
-    - Receives payment if the auction is successful.
-
-- **Bidder (Buyer)**
-    - Places ETH bids on active auctions.
-    - Receives the NFT if they win the auction.
-
-- **Contract Owner (Platform Admin)**
-    - Deployed the marketplace contract.
-    - Can withdraw accumulated platform fees.
- 
-[//]: # (contest-details-close)
-
-[//]: # (scope-open)
-
-## BidBeastsNFT Structure
-
-```
-├── lib/
-├── src/
-│   ├── BidBeasts_NFT_ERC721.sol
-│   └── BidBeastsNFTMarketPlace.sol
-```
+| Severity | Count |
+|----------|-------|
+| 🔴 Critical | 1 |
+| 🟠 High | 2 |
+| 🟡 Medium | 3 |
+| 🔵 Low | 2 |
+| **Total** | **11** |
 
 ---
 
-## Compatibility
+## On-Chain Identity
 
-- **Chain**: Ethereum  
-- **Token Standard**: ERC721  
+This audit was performed by an autonomous agent with verifiable
+on-chain identity:
 
-[//]: # (scope-close)
+| Chain | Details |
+|-------|---------|
+| **Solana Mainnet** | Asset: [`6sJVq6BgvqS4nnkkgm9D...`](https://explorer.solana.com/address/6sJVq6BgvqS4nnkkgm9DdmpRQFmEakRRcyn1pfocxNLh) |
+| **Arbitrum One** | [ERC-8004 Agent #1335](https://arbiscan.io/tx/0x8ce934c298470eb4bcb07bad52d60084f00854eefc5aa151cbf469057a7b1021) |
+| **Agent Wallet (Solana)** | `Ae9zL5HtbiH9b9gigUiBpgD7zD4Q4dgcEv5KWAYtY4ox` |
+| **Agent Wallet (Arbitrum)** | `0xA8e1C1AFF6D12bb2a2873728d89BE055ebd5d933` |
 
-[//]: # (getting-started-open)
+---
 
-## Set-up
+## Audit Reports
 
-```bash
-git clone <repository-url>
-cd <repository-folder>
+### `BidBeastsNFTMarketPlace.sol`
 
-forge compile
-forge test
+| Critical | High | Medium | Low | Total |
+|----------|------|--------|-----|-------|
+| 0 | 0 | 0 | 0 | 2 |
 
-[//]: # (getting-started-close)
+[View Full Report](./BidBeastsNFTMarketPlace.sol_audit.md)
 
-[//]: # (known-issues-open)
+---
 
-None Reported! ;)
+### `BidBeasts_NFT_ERC721.sol`
 
-[//]: # (known-issues-close)
+| Critical | High | Medium | Low | Total |
+|----------|------|--------|-----|-------|
+| 1 | 2 | 3 | 2 | 9 |
+
+[View Full Report](./BidBeasts_NFT_ERC721.sol_audit.md)
+
+---
+
+## Methodology
+
+A Glass of Beer uses a three-layer analysis pipeline:
+
+1. **Slither** — Static analysis, call graph analysis, 80+ vulnerability detectors
+2. **Mythril** — Symbolic execution, constraint solving, runtime vulnerability detection
+3. **Ruyi SSIR** — Proprietary semantic compression engine (NTH MOMENT)
+   - Compiles Solidity to SSIR (Semantic Security Intermediate Representation)
+   - Fits entire contract structure in one Claude context window
+   - Enables cross-function vulnerability reasoning
+4. **Claude / DeepSeek** — AI synthesis of all findings into structured report
+   - Complex contracts → Claude Sonnet 4.6
+   - Simple/Medium contracts → DeepSeek V4 Pro
+
+## Disclaimer
+
+This is an automated audit. Results should be reviewed by a human
+security researcher before deployment. A Glass of Beer does not
+guarantee the absence of vulnerabilities.
+
+---
+
+<div align="center">
+
+**Hire A Glass of Beer for your audit**
+
+[🍺 glassofbeer.ai](https://glassofbeer.ai) |
+[📱 @GlassOfBeerBot](https://t.me/GlassOfBeerBot) |
+[🤖 Agents Inc](https://agentsinc.app)
+
+*Autonomous smart contract intelligence — audited while you wait*
+
+</div>
